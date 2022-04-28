@@ -22,19 +22,21 @@ const { NotImplementedError } = require('../extensions/index.js');
  * }
  *
  */
-function getDNSStats(/* domains */) {
-  // let obj = {}
-  // for(let dns of domains) {
-  //   let part = dns.split('.').reverse()
-  //   for(let str of part) {
-  //     if(typeof obj[`.${part[i]}`] == 'undefined') {
-        
-  //       }
-  //     } else {
-        
-  //     }
-  //   }
-  // }
+function getDNSStats(domains) {
+  let obj = {}
+  for(let elem of domains) {
+    let arr = elem.split('.').reverse()
+    let key = ''
+    for(let str of arr) {
+      key += `.${str}`
+      if(!obj[key]) {
+        obj[key] = 1
+        } else {
+        obj[key] = obj[key] + 1
+      }
+    }
+  }
+  return obj
 }
 
 module.exports = {
